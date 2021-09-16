@@ -2,7 +2,6 @@ name: ci
 on:
   push:
     branches:
-      - master
       - main
 
   repository_dispatch:
@@ -19,3 +18,11 @@ jobs:
       - run: pip install mkdocs-material
       - run: pip install mkdocs-roamlinks-plugin
       - run: mkdocs gh-deploy --force
+
+      - name: Alert repository_dispatch to omegakid1902.github.io repo
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.MKDOCS_SECRET }}
+          repo: omegakid1902.github.io
+          owner: omegakid1902
+          event_type: update_zettelkasten
