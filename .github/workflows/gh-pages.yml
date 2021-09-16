@@ -4,6 +4,10 @@ on:
     branches:
       - master
       - main
+
+  repository_dispatch:
+    types: [update_zettelkasten]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
